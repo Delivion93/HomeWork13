@@ -55,9 +55,6 @@ public class PostUtils {
 
     }
 
-    public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
-        PostUtils postUtils = new PostUtils();
-        postUtils.lastCommentsToFileByUserId(5);
-    }
+
 
 }
