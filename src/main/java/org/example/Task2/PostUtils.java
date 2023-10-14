@@ -3,11 +3,10 @@ package org.example.Task2;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 
-import java.io.File;
+
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
@@ -15,9 +14,9 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Comparator;
+
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class PostUtils {
     ObjectMapper objectMapper = new ObjectMapper();
@@ -32,18 +31,11 @@ public class PostUtils {
         HttpClient httpClient = HttpClient.newHttpClient();
 
         HttpResponse<String> response = httpClient.send(httpRequest,HttpResponse.BodyHandlers.ofString());
-        return objectMapper.readValue(response.body(),new TypeReference<List<Post>>() {});
+        return objectMapper.readValue(response.body(), new TypeReference<>() {
+        });
     }
 
-    private int findMaxPostId(List<Post>list){
-        int maxId=list.get(0).getId();
-        for (Post post : list) {
-            if(post.getId()>maxId){
-                maxId=post.getId();
-            }
-        }
-        return maxId;
-    }
+
     public void lastCommentsToFileByUserId(int userId) throws URISyntaxException, IOException, InterruptedException {
         //user-X-post-Y-comments.json де Х - id користувача, Y - номер посту.
 
